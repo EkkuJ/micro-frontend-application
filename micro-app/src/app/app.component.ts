@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import '../../alien-abyss/al-abyss-react'
 
 @Component({
   selector: 'app-root',
