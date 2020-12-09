@@ -1,156 +1,68 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2 {
-    margin: 32px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #ebcccc;
-    height: 300px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card p {
-    text-align: center;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #720000;
-    color: white;
-    font-weight: 800;
-    font-size: large;
-    border: none;
-    width: auto;
-    min-width: 30%;
-    position: relative;
-  }
-
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-  }
-</style>
-
 <div class="content" role="main">
 
-  <!-- Highlight Card -->
-  <div class="card highlight-card card-small">
+	<div class="card highlight-card card-small">
 
-    <span>This is (not yet) a Micro Frontend</span>
+		<span>Game Manager</span>
 
-  </div>
+	</div>
 
-  <p>The GitHub repo can be found <a href="https://github.com/EkkuJ/micro-frontend-application">here</a>.</p>
+	<p>This is a simplified game manageent application implemented as a Micro Frontend.</p>
+	<p>The GitHub repo can be found <a href="https://github.com/EkkuJ/micro-frontend-application">here</a>.</p>
 
-  <!-- Resources -->
-  <h2>Fragments</h2>
-  <p>Here are the different fragments:</p>
 
-  <div class="card-container">
-    <div class="card">
-      <h3>Fragment 1</h3>
-      <p>This is one fragment. The source code can be found from <a href="">here</a></p>
-    </div>
-    <div class="card">
-      <h3>Fragment 2</h3>
-      <p>This is another fragment. The source code can be found from <a href="">here</a></p>
-    </div>
-    <div class="card">
-      <h3>Fragment 3</h3>
-      <p>This is the last fragment. The source code can be found from <a href="">here</a></p>
-    </div>
-    <div class="card">
-      <alien-abyss></alien-abyss>
-    </div>
-  </div>
+	<div *ngIf="!gameChosen; else gameView">
+		<div class="banner">
+			<h2>Choose a game to inspect</h2>
+		</div>
+
+		<div class="card-container">
+			<button class="card" (click)="chooseGame('alien-abyss')">
+				<h3>Alien Abyss</h3>
+			</button>
+			<button class="card" (click)="chooseGame('popsicle-dash')">
+				<h3>Popsicle Dash</h3>
+			</button>
+			<button class="card" (click)="chooseGame('almond-roast')">
+				<h3>Almond Roast</h3>
+			</button>
+		</div>
+	</div>
+
+	<ng-template #gameView>
+		<div class="container game-view">
+			<div class="row">
+				<div class="col-9">
+					<div *ngIf="game ==='alien-abyss'" class="game-dashboard">
+						<alien-abyss></alien-abyss>
+					</div>
+					<div *ngIf="game ==='popsicle-dash'" class="game-dashboard">
+						<popsicle-dash></popsicle-dash>
+					</div>
+					<div *ngIf="game ==='almond-roast'" class="game-dashboard">
+						<almond-roast></almond-roast>
+					</div>
+				</div>
+				<div class="container col-2 recommendations">
+					<div class="row">
+						<button class="card" (click)="chooseGame('alien-abyss')">
+							<h4>Alien Abyss</h4>
+						</button>
+					</div>
+					<div class="row">
+						<button class="card" (click)="chooseGame('popsicle-dash')">
+							<h4>Popsicle Dash</h4>
+						</button>
+					</div>
+					<div class="row">
+						<button class="card" (click)="chooseGame('almond-roast')">
+							<h4>Almond Roast</h4>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+
+
 
 </div>
