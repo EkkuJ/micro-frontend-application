@@ -1,7 +1,4 @@
 import React from 'react';
-import popsicleImage from './popsicle_image.jpg';
-import './po-dash.css'
-
 
 export default class PopsicleDashboard extends React.Component {
 
@@ -9,7 +6,15 @@ export default class PopsicleDashboard extends React.Component {
         return <div className="popsicle-dash-dashboard">
             <div className="popsicle-dash-content">
                 <h2>Popsicle Dash</h2>
-                <img className="banner-image" src={popsicleImage} style={{maxWidth: "100%", maxHeight: "100%"}}/>
+                <h3>Upcoming events</h3>
+                <p> 24.12.2020: ChisDash</p>
+                <p> 31.12.2020: Final Dash</p>
+                <p> 1.1.2021: New Year, New Dash</p>
+                <h3>Most purchased items this week</h3>
+                <p>NitroDash: 35 788</p>
+                <p>DashPackage: 23 435</p>
+                <p>Revive: 12 398</p>
+
 
             </div>
         </div>
